@@ -11,9 +11,9 @@ ARG AXELT=1000
 ARG JDK=jdk-8u201-linux-x64.tar.gz
 ARG ZOOKEEPER=apache-zookeeper-3.5.5.tar.gz
 ARG HADOOP=hadoop-3.1.2.tar.gz
-ARG SPARK=spark-2.4.3-bin-hadoop2.7.tgz
 ARG SCALA=scala-2.13.0.tgz
-#=========注意这两个参数影响 docker-config 中的 .bashrc 环境变量配置
+ARG SPARK=spark-2.4.3-bin-hadoop2.7.tgz
+#===环境变量相关
 ARG JDK_FILE_HOME=jdk1.8.0_201
 ARG ZOOKEEPER_FILE_HOME=apache-zookeeper-3.5.5
 ARG ZOOKEEPER_V=zookeeper-3.5.5
@@ -73,10 +73,12 @@ RUN apt-get update \
     && cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys \
     && cp -f ssh/ssh_config ~/.ssh/config \
     #清理
-    && rm -rf  hadoop ssh $HADOOP $JDK \ $SCALA $SPARK
+    && rm -rf  hadoop ssh  $JDK $ZOOKEEPER $HADOOP $SCALA $SPARK  \
     #增加可执行文件权限
-    && chmod +x ~/start-hadoop.sh  \
+    && chmod +x ~/start-spark.sh  \
     && chmod +x ~/run-wordcount.sh  \
+    && chmod +x $ZOOKEEPER/bin/zkServer.sh  \
+    && chmod +x $HADOOP_HOME/sbin/start-all.sh  \
     && chmod +x $HADOOP_HOME/sbin/start-dfs.sh  \
     && chmod +x $HADOOP_HOME/sbin/start-yarn.sh
 
