@@ -83,7 +83,7 @@ RUN apt-get update \
     #增加可执行文件权限
     && chmod +x ~/start-spark.sh  \
     && chmod +x ~/run-wordcount.sh  \
-    && chmod +x $ZOOKEEPER/bin/zkServer.sh  \
+    && chmod +x $ZOOKEEPER_HOME/bin/zkServer.sh  \
     && chmod +x $HADOOP_HOME/sbin/start-all.sh  \
     && chmod +x $HADOOP_HOME/sbin/start-dfs.sh  \
     && chmod +x $HADOOP_HOME/sbin/start-yarn.sh
