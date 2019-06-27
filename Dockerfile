@@ -79,7 +79,7 @@ RUN apt-get update \
     && cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys \
     && cp -f ssh/ssh_config ~/.ssh/config \
     #清理
-    && rm -rf  hadoop ssh  $JDK $ZOOKEEPER $HADOOP $SCALA $SPARK  \
+    && rm -rf  hadoop ssh spark zookeeper $JDK $ZOOKEEPER $HADOOP $SCALA $SPARK  \
     #增加可执行文件权限
     && chmod +x ~/start-spark.sh  \
     && chmod +x ~/run-wordcount.sh  \
