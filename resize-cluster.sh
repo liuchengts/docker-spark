@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# N is the node number of hadoop cluster
+# N is the node number of spark cluster
 N=$1
 
 if [[ $# = 0 ]]
@@ -27,7 +27,7 @@ echo ""
 
 echo -e "\nbuild docker spark image\n"
 
-# rebuild kiwenlau/hadoop image
+# rebuild spark image
 sudo docker build -t registry.cn-hangzhou.aliyuncs.com/lcts/spark:1.0 .
 
 echo ""

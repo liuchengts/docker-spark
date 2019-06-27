@@ -4,13 +4,14 @@
 N=${1:-3}
 
 
-# start hadoop master container
+# start spark master container
 sudo docker rm -f spark-master &> /dev/null
 echo "start spark-master container..."
 sudo docker run -itd \
                 --net=spark \
-                -p 50070:50070 \
-                -p 8088:8088 \
+                -p 50070:50070 \   ## HDFS
+                -p 8088:8088 \     ## Yarn
+                -p 8080:8080 \     ## Spark
                 --name spark-master \
                 --hostname spark-master \
                 registry.cn-hangzhou.aliyuncs.com/lcts/spark:1.0 &> /dev/null
@@ -30,5 +31,5 @@ do
 	i=$(( $i + 1 ))
 done 
 
-# get into hadoop master container
+# get into spark master container
 sudo docker exec -it spark-master bash
