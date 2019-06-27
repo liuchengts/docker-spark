@@ -34,20 +34,23 @@ ENV SPARK_HOME=/usr/local/spark/$SPARK_FILE_HOME
 ENV PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin:$ZOOKEEPER_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$SCALA_HOME/bin:$SPARK_HOME/bin:$SPARK_HOME/sbin
 #安装必要的工具
 RUN apt-get update \
-    && apt-get install -y axel vim openssh-server tar \
+    && apt-get install -y axel wget vim openssh-server tar \
     #下载sunjdk
-    && axel -a -n $AXELT http://pubqn.ayouran.com/$JDK  \
+#    && axel -a -n $AXELT http://pubqn.ayouran.com/$JDK  \
+    && wget http://pubqn.ayouran.com/$JDK  \
     #安装jdk
     && mkdir /usr/java \
     && tar -zxvf $JDK -C /usr/java \
     #下载zookeeper
-    && axel -a -n $AXELT https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/$ZOOKEEPER_V/$ZOOKEEPER  \
+#    && axel -a -n $AXELT https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/$ZOOKEEPER_V/$ZOOKEEPER  \
+    && wget https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/$ZOOKEEPER_V/$ZOOKEEPER  \
     #安装zookeeper
     && tar -zxvf $ZOOKEEPER -C /usr/local/zookeeper \
     #复制配置文件
     && cp -f zookeeper/zoo.cfg  $ZOOKEEPER_HOME/conf \
     #下载hadoop
-    &&  axel -a -n $AXELT http://mirror.bit.edu.cn/apache/hadoop/common/$HADOOP_FILE_HOME/$HADOOP  \
+#    &&  axel -a -n $AXELT http://mirror.bit.edu.cn/apache/hadoop/common/$HADOOP_FILE_HOME/$HADOOP  \
+    &&  wget http://mirror.bit.edu.cn/apache/hadoop/common/$HADOOP_FILE_HOME/$HADOOP  \
     #安装hadoop
     #创建hadoop需要的文件目录
     && mkdir -p ~/hdfs/namenode ~/hdfs/datanode $HADOOP_HOME/log \
@@ -58,11 +61,13 @@ RUN apt-get update \
     #格式化hdfs文件系统
     && hdfs namenode -format \
     #下载scala
-    && axel -a -n $AXELT https://downloads.lightbend.com/scala/${SCALA_V}/${SCALA} \
+#    && axel -a -n $AXELT https://downloads.lightbend.com/scala/${SCALA_V}/${SCALA} \
+    && wget https://downloads.lightbend.com/scala/${SCALA_V}/${SCALA} \
     #安装scala
     && tar -zxvf $SCALA -C /usr/local/scala \
     #下载spark
-    && axel -a -n $AXELT http://mirror.bit.edu.cn/apache/spark/${SPARK_FILE_V}/${SPARK} \
+#    && axel -a -n $AXELT http://mirror.bit.edu.cn/apache/spark/${SPARK_FILE_V}/${SPARK} \
+    && wget http://mirror.bit.edu.cn/apache/spark/${SPARK_FILE_V}/${SPARK} \
     #安装spark
     && tar -zxvf $SPARK -C /usr/local/spark \
     #复制配置文件
