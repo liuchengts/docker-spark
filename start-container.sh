@@ -23,7 +23,7 @@ do
 	sudo docker rm -f hadoop-slave$i &> /dev/null
 	echo "start spark-slave$i container..."
 	sudo docker run -itd \
-	                --net=hadoop \
+	                --net=spark \
 	                --name spark-slave$i \
 	                --hostname hadoop-slave$i \
 	                registry.cn-hangzhou.aliyuncs.com/lcts/spark:1.0 &> /dev/null
