@@ -9,9 +9,9 @@ sudo docker rm -f spark-master &> /dev/null
 echo "start spark-master container..."
 sudo docker run -itd \
                 --net=spark \
-                -p 50070:50070 \   ## HDFS
-                -p 8088:8088 \     ## Yarn
-                -p 8080:8080 \     ## Spark
+                -p 50070:50070 \
+                -p 8088:8088 \
+                -p 8080:8080 \
                 --name spark-master \
                 --hostname spark-master \
                 registry.cn-hangzhou.aliyuncs.com/lcts/spark:1.0 &> /dev/null
