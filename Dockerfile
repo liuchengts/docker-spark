@@ -5,9 +5,6 @@ WORKDIR /root
 #拷贝必要的文件配置
 COPY /docker-config $WORKDIR
 #构建参数设置
-ARG AXEL=axel-2.4-9
-# axel下载线程数
-ARG AXELT=1000
 ARG JDK=jdk-8u201-linux-x64.tar.gz
 ARG ZOOKEEPER=apache-zookeeper-3.5.5.tar.gz
 ARG HADOOP=hadoop-3.1.2.tar.gz
