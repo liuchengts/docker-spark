@@ -8,15 +8,11 @@
         <name>yarn.nodemanager.aux-services.mapreduce_shuffle.class</name>
         <value>org.apache.hadoop.mapred.ShuffleHandler</value>
     </property>
+    <!--指定主机名称-->
     <property>
         <name>yarn.resourcemanager.hostname</name>
-        <value>spark-master</value>
+        <value>hadoop-master</value>
     </property>
-    <property>
-        <name>yarn.resourcemanager.webapp.address</name>
-        <value>spark-master:8088</value>
-    </property>
-
     <property>
         <name>yarn.application.classpath</name>
         <value>
